@@ -1,6 +1,6 @@
 import 'package:expense_tracker_app/models/expense.dart';
 import 'package:flutter/material.dart';
-import 'expenses_list.dart';
+import 'expenses_list/expenses_list.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -32,9 +32,27 @@ class _ExpensesState extends State<Expenses> {
       category: Category.food,
     ),
   ];
+
+  void _openExpensesOverlay() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => Text("modal bottom sheet"),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.tealAccent,
+        title: const Text('Expense Tracker'),
+        actions: [
+          IconButton(
+            onPressed: _openExpensesOverlay,
+            icon: const Icon(Icons.add),
+          ),
+        ],
+      ),
       body: Column(
         children: [
           const Text('Chart'),
